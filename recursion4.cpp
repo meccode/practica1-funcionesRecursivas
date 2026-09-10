@@ -1,25 +1,21 @@
-#include 
+#include <iostream>
 
 using namespace std;
 
-bool buscarValor (int arr[], int n, int x);
+int encontrarMaximo (int arr[], int n);
 
 int main () {
-    int n, x;
+    int n;
     cout << "Ingrese cantidad de elementos: ";
     cin >> n;
     int arr[n];
     for (int i = 0; i < n; i++) cin >> arr[i];
-    cout << "Ingrese valor a buscar: ";
-    cin >> x;
-
-    if ( buscarValor (arr , n, x)) cout << "Encontrado\n";
-    else cout << "No encontrado\n";
+    cout << "El maximo es: " << encontrarMaximo (arr , n) << endl;
     return 0;
 }
 
-bool buscarValor (int arr[], int n, int x) {
-    if (n <= 0) return false;
-    if (arr[n - 1] == x) return true;
-    return buscarValor (arr , n - 1, x);
+int encontrarMaximo (int arr[], int n) {
+    if (n == 1) return arr [0];
+    int maxResto = encontrarMaximo (arr , n - 1);
+    return (arr[n - 1] > maxResto ) ? arr[n - 1] : maxResto;
 }
